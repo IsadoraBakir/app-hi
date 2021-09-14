@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class TreeService {
 
   constructor() { }
+
+  getContacts(): any {
+    return fetch('assets/data.json');
+  }
 }
