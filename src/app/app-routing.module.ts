@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TreeComponent } from './components/tree/tree.component';
+import { TreeComponent } from './tree/tree.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/tree', pathMatch: 'full' },

@@ -5,12 +5,16 @@ ul {
         background: #e7e7e7;
         display: block;
         padding: 15px;
-        align-items: center;
-        justify-content: space-between;
-    
-        &:hover {
-            background: #cccccc;
+        
+        > div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
+    
+        // &:hover {
+        //     background: #cccccc;
+        // }
     
         label {
             display: flex;
@@ -22,7 +26,6 @@ ul {
         }
 
         ul {
-            padding-left: 20px;
             list-style: none;
         }
     }
