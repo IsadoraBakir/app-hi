@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Tree } from 'src/app/models/tree.model';
 import { TreeService } from 'src/app/services/tree.service';
 
@@ -7,19 +8,24 @@ import { TreeService } from 'src/app/services/tree.service';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss']
 })
-export class TreeComponent implements OnInit {
+export class TreeComponent implements OnInit, OnDestroy {
 
   public treeData: Tree[];
+  public subscriptions: Subscription[] = [];
 
   constructor(
     private treeService: TreeService
   ) { }
 
   ngOnInit(): void {
-    this.treeService.getContacts()
-      .then(data => data.json())
-      .then(success => {
-        this.treeData = success;
-      });
+    this.subscriptions.push(
+      this.treeService.getContacts().subscribe(data => {
+        this.treeData = data;
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }
