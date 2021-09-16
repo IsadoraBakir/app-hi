@@ -1,0 +1,25 @@
+<ul>
+    <li class="item" *ngFor="let child of list | keyvalue">
+        <div>
+            <label>
+                <input
+                [id]="child.value.id" 
+                type="checkbox" 
+                [(ngModel)]="child.value.selected"
+                (change)="selectChildren($event.target.checked, child.value); setParentIndeterminated(child.value, list)"> 
+                {{ child.value.name }}
+            </label>
+            <i 
+            *ngIf="(child.value.children | json) !== '{}'"
+            [ngClass]="{'fa-angle-down': !child.value.opened,'fa-angle-up': child.value.opened}" 
+            class="fa"
+            (click)="child.value.opened = !child.value.opened"></i>
+
+        </div>
+
+        <app-tree-child 
+        *ngIf="child.value.children && child.value.opened"
+        [list]="child.value.children"
+        [parentId]="child.value.id"></app-tree-child>
+    </li>
+</ul>

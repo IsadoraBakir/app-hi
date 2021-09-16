@@ -1,0 +1,37 @@
+ul {
+    padding-left: 0px;
+    background: #e7e7e7;
+    list-style: none;
+
+    .item {
+        ul {
+            padding-left: 15px;
+        }
+
+        div {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &:hover {
+                background: #cccccc;
+            }
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            input[type="checkbox"] {
+                margin-right: 15px;
+            }
+        }
+
+        i {
+            padding: 5px;
+            cursor: pointer;
+        }
+    }
+}
