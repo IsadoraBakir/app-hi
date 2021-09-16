@@ -7,8 +7,10 @@ import { Tree } from '../models/tree.model';
   styleUrls: ['./tree-child.component.scss']
 })
 export class TreeChildComponent implements OnInit {
+
   @Input() list;
   @Input() parentId;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -22,10 +24,18 @@ export class TreeChildComponent implements OnInit {
         this.selectChildren(value, child);
       }
     });
+  }
 
-    if (this.parentId) {
+  setParentIndeterminated(item: any, listObject: Tree): void {
+    if (item.level > 0 && this.parentId) {
+      const list: Tree[] = Object.values(listObject);
+      const selectedList = list.filter(i => i.selected);
       const element: any = document.getElementById(this.parentId);
-      element.indeterminate = true;
+      if (list.length !== selectedList.length) {
+        element.indeterminate = true;
+      } else {
+        element.indeterminate = false;
+      }
     }
   }
 }
